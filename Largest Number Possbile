@@ -1,0 +1,16 @@
+public:
+    string findLargest(int n, int s){
+        string ans="";
+        if(s==0){
+            if(n==1)    return "0";
+            return -1;
+        }
+        while(n--){
+            int curr=min(9, s);
+            s-=curr;
+            ans+=(char)('0'+curr);
+        }
+        if(s>0) return "-1";
+        return ans;
+    }
+};
