@@ -1,0 +1,15 @@
+class Solution
+{
+    public:
+    // Function to check if Kth bit is set or not.
+    bool checkKthBit(int n, int k)
+    {
+        string s = bitset<64> (n).to_string();  
+        const auto loc1 = s.find('1'); 
+        if(loc1 != string::npos) 
+            s.substr(loc1); 
+            
+        int size=s.size();
+        return s[size-k-1]=='1'? true : false;
+    }
+};
