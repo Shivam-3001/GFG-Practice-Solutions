@@ -1,0 +1,25 @@
+class Solution{
+    public:
+    /*Function to count zeros in each column
+    * N : Number of rows and columns in array
+    M is the matrix that is globally declared
+    */
+    int columnWithMaxZeros(vector<vector<int>>arr,int N){
+        int ans=-1;
+        int max_zero=-1;
+        for(int i=0; i<N; i++){
+            int cnt=0;
+            for(int j=0; j<N; j++){
+                if(arr[j][i]==0){
+                    cnt++;
+                }
+            }
+            // cout<<cnt<<" "<<max_zero<<endl;
+            if(cnt>0 && cnt>max_zero){
+                max_zero=cnt;
+                ans=i;
+            }
+        }
+        return ans;
+    }
+};
