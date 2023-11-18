@@ -1,0 +1,25 @@
+class Solution
+{
+    public:
+    Node* reverseDLL(Node * head)
+    {
+        //Your code here
+        Node* temp=head;
+        while(temp->next!=NULL){
+            temp=temp->next;
+        }
+        Node* newHead=new Node(temp->data);
+        Node* x=newHead;
+        newHead->prev=NULL;
+        while(temp!=head){
+            temp=temp->prev;
+            Node *abc=new Node(temp->data);
+            x->next=abc;
+            abc->prev=x;
+            x=abc;
+    
+        }
+        x->next;
+        return newHead;
+    }
+};
