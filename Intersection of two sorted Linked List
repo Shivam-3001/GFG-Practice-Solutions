@@ -1,0 +1,42 @@
+class Solution
+{
+    public:
+    void insert(Node** root, int item) 
+    { 
+        Node* temp = new Node(item); 
+        temp->next = *root; 
+        *root = temp; 
+    } 
+    
+    Node *arrayToList(vector<int> arr, int n) 
+    { 
+        Node *root = NULL; 
+        for (int i = n-1; i >= 0 ; i--) 
+            insert(&root, arr[i]); 
+        return root; 
+    } 
+    
+    Node* findIntersection(Node* head1, Node* head2)
+    {
+        vector<int> ans;
+        Node *temp1=head1;
+        Node *temp2=head2;
+        while(temp1!=NULL && temp2!=NULL){
+            int x=temp1->data;
+            int y=temp2->data;
+            if(x==y){
+                ans.push_back(temp1->data);
+                temp1=temp1->next;
+                temp2=temp2->next;
+            }
+            else if(x<y){
+                temp1=temp1->next;
+            }
+            else{
+                temp2=temp2->next;
+            }
+        }
+        Node* root = arrayToList(ans, ans.size()); 
+        return root;
+    }
+};
