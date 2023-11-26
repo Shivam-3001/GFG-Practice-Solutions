@@ -1,0 +1,33 @@
+class Solution{
+public:
+vector<int> ans;
+void fun(int n, int k) {
+        
+        if(n > 0) {
+            ans.push_back(n);
+            fun(n-5, k);
+        }
+        
+        if(n <= 0) {
+            ans.push_back(n);
+            fun1(n+5, k);
+        }
+    }
+    
+    void fun1(int n, int k) {
+        //
+        ans.push_back(n);
+        if(n >= k) return;
+        fun1(n+5, k);
+    }
+    
+    
+    vector<int> pattern(int k){
+        // code here
+        if(k == 0) return {0};
+        if(k < 0) return {k};
+        ans.push_back(k);
+        fun(k-5, k);
+        return ans;
+    }
+};
