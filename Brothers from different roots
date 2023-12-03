@@ -1,0 +1,35 @@
+class Solution
+{
+    public:
+    void rec1(int a , Node *root2,int x,int &d)
+    {
+        if(root2==NULL) return;
+        if(a+root2->data == x) {
+            d=1;
+            return;
+        }
+        if(a+root2->data<x)
+        {
+            rec1(a,root2->right,x,d);
+        }
+        else
+        {
+            rec1(a,root2->left,x,d);
+        }
+    }
+    void rec(Node* root1 , Node *root2 , int x , int &c)
+    {
+        if(root1==NULL) return;
+        int d = 0;
+        rec1(root1->data,root2,x,d);
+        if(d==1) c++;
+        rec(root1->left , root2 , x , c);
+        rec(root1->right,root2,x,c);
+    }
+    int countPairs(Node* root1, Node* root2, int x)
+    {
+        int c = 0;
+        rec(root1,root2,x,c);
+        return c;
+    }
+};
