@@ -1,0 +1,23 @@
+class Solution{
+    public:
+    long countSubarrays(int a[], int n, int L, int R)
+    {
+        long ans=0,u=0,j=-1,l=0;
+        for(int i=0;i<n;i++){
+            if(R>=a[i] && a[i]>=L){
+                u++;
+                j=i;
+            }
+            if(u>0 && R>=a[i]){
+                ans+=(j-l);
+                if(i>j)ans++;
+            }
+            if(a[i]>R){
+                l=i+1;
+                ans+=u;
+                u=0;
+            }
+        }
+        return ans+u;
+    }
+};
