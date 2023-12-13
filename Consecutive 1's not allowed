@@ -1,0 +1,28 @@
+class Solution{
+public:
+    // #define ll long long
+    ll dp[100000+1][2];
+    int mod = 1e9+7;
+    ll cal(int i , int last)
+    {
+        if(i<0)
+            return 1;
+        //take 0
+        if(dp[i][last]!=-1)
+            return dp[i][last];
+        ll take = 0;
+        if(last == 0)
+        take = (cal(i-1 , 0)%mod + cal(i-1 , 1)%mod)%mod;
+        
+        ll nottake = 0;
+        if(last == 1)
+            nottake = cal(i-1 , 0)%mod;
+            
+       return dp[i][last] = (take%mod + nottake%mod)%mod;
+    }
+    ll countStrings(int n) {
+        // code here
+        memset(dp ,-1 , sizeof(dp));
+        return cal(n-1, 0);
+    }
+};
