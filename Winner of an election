@@ -1,0 +1,22 @@
+class Solution{
+  public:
+    vector<string> winner(string arr[],int n)
+    {
+        map<string, int> mp;
+        for(int i=0; i<n; i++){
+            mp[arr[i]]++;
+        }
+        string name="";
+        int vote=0;
+        for(auto it: mp){
+            if(it.second>vote){
+                name=it.first;
+                vote=it.second;
+            }
+        }
+        vector<string >ans;
+        ans.push_back(name);
+        ans.push_back(to_string(vote));
+        return ans;
+    }
+};
