@@ -1,0 +1,22 @@
+class Solution {
+    
+    public:
+    int solve( int coins[], int i, int N ,int sum,vector<vector<int> >& dp) {
+        if(sum == 2024) return 1;
+        if(sum >0 && (sum%20==0 || sum%24==0)) return 1;
+        if(i>=N) return 0;
+        if(dp[i][sum] != -1) return dp[i][sum];
+        
+        int take = solve(coins,i+1,N,sum+coins[i], dp);
+        int notake = solve(coins,i+1,N,sum, dp);
+        dp[i][sum] = take||notake;
+        return  dp[i][sum];
+    }
+    
+    int isPossible(int N , int coins[]) 
+    {
+        vector<vector<int> > dp(N, vector<int>(2025,-1));
+        return solve(coins,0,N,0,dp);
+    }
+    
+};
