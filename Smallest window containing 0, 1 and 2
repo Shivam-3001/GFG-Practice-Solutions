@@ -1,0 +1,28 @@
+class Solution {
+  public:
+    int smallestSubstring(string S) {
+        int n=S.length();
+        int zero=-1,one=-1,two=-1;
+        int res=INT_MAX;
+        for(int i=0; i<n; i++){
+            if(S[i]=='0'){
+                zero=i;
+            }
+            else if(S[i]=='1'){
+                one=i;
+            }
+            else if(S[i]=='2'){
+                two=i;
+            }
+            if(zero>=0 && one>=0 && two>=0){
+                int mindx=min(min(zero,one),two);
+                int maxindx=max(max(zero,one),two);
+                res=min(res,maxindx-mindx+1);
+            }
+        }
+        if(res==INT_MAX){
+            return -1;
+        }
+        return res;
+    }
+};
