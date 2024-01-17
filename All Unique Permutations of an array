@@ -1,0 +1,32 @@
+class Solution {
+    void solve(int ind,int n,set<vector<int>>&st,vector<int>&nums)
+    {
+        //base case
+        if(ind==n)
+        {
+            st.insert(nums);
+            return;
+        }
+        
+        for(int i=ind;i<n;++i)
+        {
+          swap(nums[ind],nums[i]);
+          solve(ind+1,n,st,nums);
+          swap(nums[ind],nums[i]);
+        }
+    }
+    public:
+    vector<vector<int>> uniquePerms(vector<int> &arr ,int n) 
+    {
+        
+        set<vector<int>>st;
+        vector<vector<int>>ans;
+        //{ind,n,freq,st}
+        solve(0,n,st,arr);
+        for(auto it:st)
+        {
+            ans.push_back(it);
+        }
+        return ans;
+    }
+};
